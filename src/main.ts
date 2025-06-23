@@ -2,6 +2,7 @@ import { AppDataSource } from "./config/data-source";
 import express from "express";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
+import { PORT } from "./config/env";
 
 const start_app = async () => {
     try {
@@ -10,8 +11,6 @@ const start_app = async () => {
         app.use(express.json());
         app.use("/auth", authRoutes);
         app.use("/users", userRoutes);
-
-        const PORT = 3000;
 
         AppDataSource.initialize();
 

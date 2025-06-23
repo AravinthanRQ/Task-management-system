@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // TypeORM relies on newer JavaScript features like async/await and posisble newer class methods
+    "experimentalDecorators": true, // TypeORM heavily uses decorators (like @Entity(), @Column()), which are not part of standard JS yet.
+    "emitDecoratorMetadata": true, // This tells TS to emit additional metadata used by frameworks like TypeORM for reflection. It enables TypeORM to infer types at runtime (needed for things like auto-generating tables)
+
+    /* Modules */
+    "module": "CommonJS", // CommonJS is the default module system used in Node.js environments. TypeORM can run in ESM and CommonJS, but CommonJS is safer and easier to set up for most server-side apps
+    "rootDir": "./src",
+    "moduleResolution": "node", // Ensures that imports work like in Node.js (it knows how to find packages in node_modules and resolve file paths correctly)
+    "resolveJsonModule": true, // Lets you import .json files directly in Typescript. Useful if importing config files or similar
+
+    /* JavaScript Support */
+    "outDir": "./dist",
+    "esModuleInterop": true, // Allows default imports form CommonJS modules. Fixes problems where you'd otherwise need to do as import * as foo from "foo"
+    "forceConsistentCasingInFileNames": true, // Prevents casing issues between different OSes. Helps avoid bugs caused by importing User.ts vs user.ts
+
+    /* Type Checking */
+    "strict": true,
+
+    /* Completeness */
+    "skipLibCheck": true // Speeds up compilation by skipping type checks in node_modules 
+  },
+  // Tells the compiler to only look at source code (src) and ignore build outputs and dependencies
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+}

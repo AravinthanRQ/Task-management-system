@@ -14,7 +14,7 @@ npm run dev
 * [x] Initialize Node.js project with Typescript along with TypeORM
 (docker-compose)
 * [x] Setup Express server
-* [ ] Configure environment variables using `dotenv`
+* [x] Configure environment variables using `dotenv`
 * [ ] Setup Redis and BullMQ integration
 * [ ] Setup Jest and Supertest
 * [ ] Seed default Admin user on app start

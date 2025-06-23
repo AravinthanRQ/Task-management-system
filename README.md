@@ -15,7 +15,7 @@ npm run dev
 (docker-compose)
 * [x] Setup Express server
 * [x] Configure environment variables using `dotenv`
-* [ ] Setup Redis and BullMQ integration
+* [x] Setup Redis and BullMQ integration
 * [ ] Setup Jest and Supertest
 * [ ] Seed default Admin user on app start
 

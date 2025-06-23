@@ -16,7 +16,7 @@ npm run dev
 * [x] Setup Express server
 * [x] Configure environment variables using `dotenv`
 * [x] Setup Redis and BullMQ integration
-* [ ] Setup Jest and Supertest
+* [x] Setup Jest and Supertest
 * [ ] Seed default Admin user on app start
 
 ---

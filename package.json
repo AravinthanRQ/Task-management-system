@@ -6,8 +6,9 @@
         "dev": "ts-node-dev --respawn --transpile-only src/main.ts",
         "start": "tsc -b && node dist/main.js",
         "build": "tsc -b",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "worker": "ts-node-dev --respawn --transpile-only src/queues/message.worker.ts"
+        "worker": "ts-node-dev --respawn --transpile-only src/queues/message.worker.ts",
+        "test": "jest --detectOpenHandles",
+        "test:cov": "jest --coverage"
     },
     "keywords": [],
     "author": "",

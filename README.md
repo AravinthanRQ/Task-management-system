@@ -13,7 +13,7 @@ npm run dev
 
 * [x] Initialize Node.js project with Typescript along with TypeORM
 (docker-compose)
-* [ ] Setup Express server
+* [x] Setup Express server
 * [ ] Configure environment variables using `dotenv`
 * [ ] Setup Redis and BullMQ integration
 * [ ] Setup Jest and Supertest

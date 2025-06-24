@@ -1,9 +1,4 @@
-enum logT {
-    Seed = "SEED",
-    Error = "ERROR",
-    Log = "LOG",
-    Job = "JOB",
-}
+import { logT } from "./logT.enum";
 
 const log = (logType: logT, logMessage: string) => {
     if (logType === logT.Log) console.log(`[${logType} 💬]: ${logMessage}`);

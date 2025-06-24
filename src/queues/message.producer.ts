@@ -1,5 +1,6 @@
 import { messageQueue } from "./queue";
 import log from "../common/log";
+import { logT } from "../common/logT.enum";
 
 // addMessageJob accepts the data to enqueue a job
 export const addMessageJob = async (data: any) => {
@@ -17,5 +18,5 @@ export const addMessageJob = async (data: any) => {
         removeOnComplete: true,
         removeOnFail: false,
     });
-    log("LOG", "Job added to Queue");
+    log(logT.Log, "Job added to Queue");
 };

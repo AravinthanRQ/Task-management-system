@@ -12,6 +12,7 @@ export const DB_PASSWORD = getEnv("DB_PASSWORD");
 export const DB_NAME = getEnv("DB_NAME");
 export const JWT_SECRET = getEnv("JWT_SECRET");
 export const JWT_EXPIRATION = getEnv("JWT_EXPIRATION");
+export const SALT_ROUNDS = parseInt(getEnv("SALT_ROUNDS"), 10);
 export const REDIS_HOST = getEnv("REDIS_HOST");
 export const REDIS_PORT = parseInt(getEnv("REDIS_PORT"), 10);
 export const ADMIN_EMAIL = getEnv("ADMIN_EMAIL");

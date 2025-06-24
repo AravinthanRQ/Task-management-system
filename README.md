@@ -27,9 +27,9 @@ npm run dev
 * [x] Implement JWT-based login and register
 * [x] Add role-based middleware
 * [x] Secure routes with `authMiddleware`
-* [ ] Endpoint: `POST /auth/register` (Admin-only)
-* [ ] Endpoint: `POST /auth/login`
-* [ ] Endpoint: `GET /auth/profile`
+* [x] Endpoint: `POST /auth/register` (Admin-only)
+* [x] Endpoint: `POST /auth/login`
+* [x] Endpoint: `GET /auth/profile`
 
 ---
 

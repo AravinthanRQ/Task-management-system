@@ -23,7 +23,7 @@ npm run dev
 
 ## Authentication
 
-* [ ] Create DTOs for Register/Login
+* [x] Create DTOs for Register/Login
 * [ ] Implement JWT-based login and register
 * [ ] Add role-based middleware
 * [ ] Secure routes with `authMiddleware`

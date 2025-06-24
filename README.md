@@ -25,8 +25,8 @@ npm run dev
 
 * [x] Create DTOs for Register/Login
 * [x] Implement JWT-based login and register
-* [ ] Add role-based middleware
-* [ ] Secure routes with `authMiddleware`
+* [x] Add role-based middleware
+* [x] Secure routes with `authMiddleware`
 * [ ] Endpoint: `POST /auth/register` (Admin-only)
 * [ ] Endpoint: `POST /auth/login`
 * [ ] Endpoint: `GET /auth/profile`

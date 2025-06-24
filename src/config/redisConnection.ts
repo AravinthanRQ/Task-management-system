@@ -1,3 +1,4 @@
+import log from "../common/log";
 import { Redis, RedisOptions } from "ioredis";
 import { REDIS_HOST, REDIS_PORT } from "./env";
 
@@ -9,6 +10,6 @@ const redisOption: RedisOptions = {
 
 const redisConnection = new Redis(redisOption);
 
-console.log("[LOG] Redis connected Successfully");
+log("LOG", "Redis connected Successfully");
 
 export default redisConnection;

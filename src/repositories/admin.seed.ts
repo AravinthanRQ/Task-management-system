@@ -1,14 +1,14 @@
-import * as bcrypt from "bcrypt";
 import { ADMIN_EMAIL, ADMIN_PASSWORD } from "../config/env";
 import { userRepository } from "./repository";
 import hashPassword from "../common/hashPassword";
+import log from "../common/log";
 
 const seedAdminUser = async () => {
     const existingAdmin = await userRepository.findOneBy({
         email: ADMIN_EMAIL,
     });
     if (existingAdmin) {
-        console.log("[SEED] Admin user already exists");
+        log("SEED", "Admin user already exists");
         return;
     }
 
@@ -22,7 +22,7 @@ const seedAdminUser = async () => {
 
     await userRepository.save(adminUser);
 
-    console.log("[SEED] Admin user created");
+    log("SEED", "Admin user created");
 };
 
 export default seedAdminUser;

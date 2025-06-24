@@ -3,6 +3,7 @@
  * Worker: a class that processes jobs from a queue
  */
 import { Job, Worker } from "bullmq";
+import log from "../common/log";
 import { QUEUE_NAME } from "../config/env";
 import redisConnection from "../config/redisConnection";
 
@@ -17,7 +18,7 @@ const concurrency = 2; // Setting number of jobs the worker can process at the s
 const worker = new Worker(
     QUEUE_NAME,
     async (job: Job) => {
-        console.log(`[JOB] Processing Job ${job.id} with data: ${job.data}`);
+        log("JOB", `[JOB] Processing Job ${job.id} with data: ${job.data}`);
     },
     {
         connection: redisConnection,
@@ -26,11 +27,11 @@ const worker = new Worker(
 );
 
 worker.on("completed", (job) => {
-    console.log(`[JOB] Job ${job.id} completed`);
+    log("JOB", `Job ${job.id} completed`);
 });
 
 worker.on("failed", (job, error) => {
-    console.log(`[JOB] Job ${job?.id} failed with Error: ${error}`);
+    log("JOB", `Job ${job?.id} failed with Error: ${error}`);
 });
 
-console.log(`[LOG] Worker started with concurrency: ${concurrency}`);
+log("LOG", `Worker started with concurrency: ${concurrency}`);

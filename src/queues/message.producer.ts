@@ -3,9 +3,9 @@ import log from "../common/log";
 import { logT } from "../common/logT.enum";
 
 // addMessageJob accepts the data to enqueue a job
-export const addMessageJob = async (data: any) => {
+export const addMessageJob = async (name: string, data: any) => {
     // Adds a job to the messageQueue with a name 'send_message' (job identifier) and payload data
-    await messageQueue.add("send_message", data, {
+    await messageQueue.add(name, data, {
         attempts: 3, // The job will retry up to 3 times if it fails
         backoff: {
             /* Retry strategy :>
@@ -18,5 +18,5 @@ export const addMessageJob = async (data: any) => {
         removeOnComplete: true,
         removeOnFail: false,
     });
-    log(logT.Log, "Job added to Queue");
+    log(logT.Log, `Job ${name} added to Queue`);
 };

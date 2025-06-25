@@ -1,5 +1,7 @@
 import { DataSource } from "typeorm";
 import { User } from "../entities/User";
+import { Project } from "../entities/Project";
+import { Task } from "../entities/Tasks";
 import {
     NODE_ENV,
     DB_HOST,
@@ -18,7 +20,7 @@ export const AppDataSource = new DataSource({
     database: TEST_DB_NAME,
     synchronize: NODE_ENV ? true : false,
     logging: true,
-    entities: [User],
+    entities: [User, Project, Task],
     subscribers: [],
     migrations: [],
 });

@@ -45,13 +45,13 @@ npm run dev
 
 ## Project Management
 
-* [ ] Endpoint: `POST /projects` (Admin)
-* [ ] Endpoint: `GET /projects` (Admin/User with caching)
-* [ ] Endpoint: `GET /projects/:id` (Admin/User access control)
-* [ ] Endpoint: `DELETE /projects/:id` (Admin)
-* [ ] Implement Redis caching by role
-* [ ] Invalidate cache on create/update/delete
-* [ ] Trigger BullMQ job: `Create Default Task` on creation
+* [x] Endpoint: `POST /projects` (Admin)
+* [x] Endpoint: `GET /projects` (Admin/User with caching)
+* [x] Endpoint: `GET /projects/:id` (Admin/User access control)
+* [x] Endpoint: `DELETE /projects/:id` (Admin)
+* [x] Implement Redis caching by role
+* [x] Invalidate cache on create/update/delete
+* [x] Trigger BullMQ job: `Create Default Task` on creation
 
 ---
 

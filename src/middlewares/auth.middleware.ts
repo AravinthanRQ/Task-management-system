@@ -9,13 +9,13 @@ const authenticate = (req: userRequest, res: Response, next: NextFunction) => {
     if (!bearerToken)
         throw new HttpError(
             "Bearer Token is missing or undefined in authorization header",
-            HttpStatusCode.CONFLICT,
+            HttpStatusCode.UNAUTHORIZED,
         );
     const token = bearerToken.split(" ")[1];
     if (!token)
         throw new HttpError(
             "Token is missing or undefined in bearer token",
-            HttpStatusCode.CONFLICT,
+            HttpStatusCode.UNAUTHORIZED,
         );
 
     const { id } = validateToken(token);

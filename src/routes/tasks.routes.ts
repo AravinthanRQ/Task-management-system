@@ -63,7 +63,7 @@ router.get(
 );
 
 router.patch(
-  "/tasks/:id",
+  "/:id",
   authenticate,
   roleIdentifier,
   asyncHandler(async (req: userRequest, res) => {
@@ -87,7 +87,7 @@ router.patch(
 );
 
 router.delete(
-  "/tasks/:id",
+  "/:id",
   authenticate,
   roleIdentifier,
   asyncHandler(async (req: userRequest, res) => {

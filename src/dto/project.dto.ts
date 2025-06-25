@@ -1,4 +1,4 @@
-import { IsDate, IsEnum, IsNotEmpty, IsString } from "class-validator";
+import { IsDateString, IsEnum, IsNotEmpty, IsString } from "class-validator";
 import { projectStatus } from "../common/projectStatus.enum";
 
 export class ProjectDto {
@@ -10,11 +10,11 @@ export class ProjectDto {
     @IsNotEmpty()
     description!: string;
 
-    @IsDate()
+    @IsDateString()
     @IsNotEmpty()
     startDate!: Date;
 
-    @IsDate()
+    @IsDateString()
     @IsNotEmpty()
     endDate!: Date;
 

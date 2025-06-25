@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt, { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
 import { JWT_EXPIRATION, JWT_SECRET } from "../config/env";
 import { HttpError } from "../middlewares/error.middleware";
 import { HttpStatusCode } from "../common/httpStatus.enum";
@@ -16,6 +16,18 @@ export const validateToken = (token: string) => {
         const validToken = jwt.verify(token, JWT_SECRET) as userJWTPayload;
         return validToken;
     } catch (error) {
-        throw new HttpError("Invalid JWT Token", HttpStatusCode.CONFLICT);
+        if (error instanceof TokenExpiredError) {
+            throw new HttpError(
+                "JWT Token has expired",
+                HttpStatusCode.UNAUTHORIZED,
+            );
+        }
+        if (error instanceof JsonWebTokenError) {
+            throw new HttpError("Invalid JWT Token", HttpStatusCode.UNAUTHORIZED);
+        }
+        throw new HttpError(
+            "An unexpected error occurred with JWT Token",
+            HttpStatusCode.INTERNAL_SERVER_ERROR,
+        );
     }
 };

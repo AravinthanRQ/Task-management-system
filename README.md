@@ -57,14 +57,14 @@ npm run dev
 
 ## Task Management
 
-* [ ] Endpoint: `POST /projects/:projectId/tasks` (Admin)
-* [ ] Endpoint: `GET /projects/:projectId/tasks` (Admin/User)
-* [ ] Endpoint: `PATCH /tasks/:id` (Both - User limited to status updates)
-* [ ] Endpoint: `DELETE /tasks/:id` (Admin)
-* [ ] Validate task DTOs
-* [ ] Enforce permission checks
-* [ ] Cache user-task lists in Redis
-* [ ] Invalidate cache appropriately
+* [x] Endpoint: `POST /projects/:projectId/tasks` (Admin)
+* [x] Endpoint: `GET /projects/:projectId/tasks` (Admin/User)
+* [x] Endpoint: `PATCH /tasks/:id` (Both - User limited to status updates)
+* [x] Endpoint: `DELETE /tasks/:id` (Admin)
+* [x] Validate task DTOs
+* [x] Enforce permission checks
+* [x] Cache user-task lists in Redis
+* [x] Invalidate cache appropriately
 
 ---
 

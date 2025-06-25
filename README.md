@@ -88,16 +88,16 @@ npm run dev
 
 ## Testing
 
-* [ ] Setup test PostgreSQL DB
-* [ ] Mock Redis and BullMQ where needed
-* [ ] Integration tests for:
+* [x] Setup test PostgreSQL DB
+* [x] Mock Redis and BullMQ where needed
+* [x] Integration tests for:
 
-  * [ ] Auth flows
-  * [ ] User endpoints
-  * [ ] Project endpoints
-  * [ ] Task endpoints
-* [ ] Edge cases, invalid data, unauthorized access
-* [ ] Coverage target: 90%+
+  * [x] Auth flows
+  * [x] User endpoints
+  * [x] Project endpoints
+  * [x] Task endpoints
+* [x] Edge cases, invalid data, unauthorized access
+* [x] Coverage target: 90%+
 
 ---
 

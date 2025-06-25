@@ -1,5 +1,8 @@
 import request from "supertest";
-import app from "../src/app"; // Import your Express app
+import app from "../src/app";
+
+jest.mock('ioredis');
+jest.mock('bullmq');
 
 describe("GET /", () => {
     it('should respond with a 200 status code and "Hello world"', async () => {

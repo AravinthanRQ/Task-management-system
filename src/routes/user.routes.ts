@@ -24,8 +24,9 @@ router.post(
         const dto = plainToInstance(RegisterUserDto, req.body);
         const errors = await validate(dto);
         if (errors.length > 0) {
+            const messages = errors.map(e => Object.values(e.constraints || {})).flat();
             throw new HttpError(
-                "Validation failed",
+                `Validation failed: ${messages.join(', ')}`,
                 HttpStatusCode.BAD_REQUEST
             );
         }
@@ -52,7 +53,7 @@ router.post(
         });
         await userRepository.save(newUser);
         await enqueueWelcomeEmail(newUser);
-        res.json({
+        res.status(HttpStatusCode.CREATED).json({
             message: "User created succesfully",
             data: { user: instanceToPlain(newUser) },
         });

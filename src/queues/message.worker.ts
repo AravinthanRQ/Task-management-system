@@ -8,7 +8,11 @@ import { QUEUE_NAME } from "../config/env";
 import redisConnection from "../config/redisConnection";
 import { logT } from "../common/logT.enum";
 import { AppDataSource } from "../config/data-source";
-import { projectRepository, taskRepository, userRepository } from "../repositories/repository";
+import {
+    projectRepository,
+    taskRepository,
+    userRepository,
+} from "../repositories/repository";
 
 const startWorker = async () => {
     try {
@@ -30,30 +34,71 @@ const startWorker = async () => {
     const worker = new Worker(
         QUEUE_NAME,
         async (job: Job) => {
-            log(logT.Job, `[JOB] Processing Job '${job.name}' (${job.id}) with data: ${JSON.stringify(job.data)}`);
+            log(
+                logT.Job,
+                `[JOB] Processing Job '${job.name}' (${
+                    job.id
+                }) with data: ${JSON.stringify(job.data)}`
+            );
 
             switch (job.name) {
                 case "createDefaultTask":
                     const { projectId, userId } = job.data;
-                    const project = await projectRepository.findOneBy({ id: projectId });
+                    const project = await projectRepository.findOneBy({
+                        id: projectId,
+                    });
                     const user = await userRepository.findOneBy({ id: userId });
 
                     if (!project || !user) {
-                        throw new Error(`Project or User not found for job ${job.id}. ProjectID: ${projectId}, UserID: ${userId}`);
+                        throw new Error(
+                            `Project or User not found for job ${job.id}. ProjectID: ${projectId}, UserID: ${userId}`
+                        );
                     }
 
                     const defaultTask = taskRepository.create({
                         name: "Welcome Task",
-                        description: "This is a default task created for your new project.",
+                        description:
+                            "This is a default task created for your new project.",
                         project: project,
-                        createdBy: user
+                        createdBy: user,
                     });
                     await taskRepository.save(defaultTask);
-                    log(logT.Job, `Default task created for project ${projectId}`);
+                    log(
+                        logT.Job,
+                        `Default task created for project ${projectId}`
+                    );
                     break;
-                
+
                 case "send_message":
-                    log(logT.Job, `Processing send_message job with data: ${JSON.stringify(job.data)}`);
+                    log(
+                        logT.Job,
+                        `Processing send_message job with data: ${JSON.stringify(
+                            job.data
+                        )}`
+                    );
+                    break;
+
+                case "sendWelcomeEmail":
+                    const { email } = job.data;
+                    log(
+                        logT.Job,
+                        `Mock email: Welcome email sent to ${email}`
+                    );
+                    break;
+
+                case "sendDailyReminders":
+                    const today = new Date();
+                    const tasks = await taskRepository.find({
+                        where: { dueDate: today },
+                        relations: ["createdBy"],
+                    });
+
+                    tasks.forEach((task) => {
+                        log(
+                            logT.Job,
+                            `Reminder: Task "${task.name}" is due today for ${task.createdBy.email}`
+                        );
+                    });
                     break;
 
                 default:
@@ -64,7 +109,7 @@ const startWorker = async () => {
         {
             connection: redisConnection,
             concurrency,
-        },
+        }
     );
 
     worker.on("completed", (job) => {
@@ -72,7 +117,10 @@ const startWorker = async () => {
     });
 
     worker.on("failed", (job, error) => {
-        log(logT.Error, `Job ${job?.id} (${job?.name}) failed with Error: ${error.message}`);
+        log(
+            logT.Error,
+            `Job ${job?.id} (${job?.name}) failed with Error: ${error.message}`
+        );
     });
 
     log(logT.Job, `Worker started with concurrency: ${concurrency}`);

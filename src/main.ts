@@ -4,6 +4,7 @@ import { logT } from "./common/logT.enum";
 import { AppDataSource } from "./config/data-source";
 import { PORT } from "./config/env";
 import seedAdminUser from "./repositories/admin.seed";
+import { scheduleDailyReminders } from "./queues/reminder.queue";
 
 const start_app = async () => {
     try {
@@ -11,6 +12,8 @@ const start_app = async () => {
         log(logT.Log, "Database connected Successfully");
 
         await seedAdminUser();
+
+        await scheduleDailyReminders();
 
         app.listen(PORT, () => {
             log(logT.Log, `Server running at http://localhost:${PORT}`);

@@ -70,19 +70,19 @@ npm run dev
 
 ## 📬 BullMQ Queues & Jobs
 
-* [ ] `user.queue.ts` – Send welcome email on user creation
-* [ ] `project.queue.ts` – Create default task
-* [ ] `reminder.queue.ts` – Daily job at 9 AM for due task reminders
-* [ ] Use `nodemailer` or console log for email mock
-* [ ] Add retry/backoff settings
+* [x] `user.queue.ts` – Send welcome email on user creation
+* [x] `project.queue.ts` – Create default task
+* [x] `reminder.queue.ts` – Daily job at 9 AM for due task reminders
+* [x] Use `nodemailer` or console log for email mock
+* [x] Add retry/backoff settings
 
 ---
 
 ## DTOs & Validation
 
-* [ ] Define DTOs for user, auth, project, task
-* [ ] Use `class-validator` for input validation
-* [ ] Use `class-transformer` to hide sensitive fields
+* [x] Define DTOs for user, auth, project, task
+* [x] Use `class-validator` for input validation
+* [x] Use `class-transformer` to hide sensitive fields
 
 ---
 

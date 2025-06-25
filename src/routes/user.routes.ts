@@ -8,6 +8,7 @@ import { HttpStatusCode } from "../common/httpStatus.enum";
 import { instanceToPlain, plainToInstance } from "class-transformer";
 import { RegisterUserDto } from "../dto/register-user.dto";
 import { userRole } from "../common/userRole.enum";
+import { enqueueWelcomeEmail } from "../queues/user.queue";
 import { userRequest } from "../common/userRequest.interface";
 import hashPassword from "../common/hashPassword";
 import { validate } from "class-validator";
@@ -50,6 +51,7 @@ router.post(
             role,
         });
         await userRepository.save(newUser);
+        await enqueueWelcomeEmail(newUser);
         res.json({
             message: "User created succesfully",
             data: { user: instanceToPlain(newUser) },

@@ -17,6 +17,9 @@ export class Task {
     @Column({ type: "enum", enum: taskStatus, default: taskStatus.PENDING })
     status!: taskStatus;
 
+    @Column({ type: "date", nullable: true })
+    dueDate!: Date | null;
+
     @ManyToOne(() => Project, (project) => project.tasks, { onDelete: "CASCADE" })
     project!: Project;
 

@@ -35,11 +35,11 @@ npm run dev
 
 ## User Management (Admin Only)
 
-* [ ] Endpoint: `POST /users` - Create user with role
-* [ ] Endpoint: `GET /users` - List all users
-* [ ] Endpoint: `PATCH /users/:id/role` - Update role
-* [ ] Validate user DTOs
-* [ ] Exclude password field using class-transformer
+* [x] Endpoint: `POST /users` - Create user with role
+* [x] Endpoint: `GET /users` - List all users
+* [x] Endpoint: `PATCH /users/:id/role` - Update role
+* [x] Validate user DTOs
+* [x] Exclude password field using class-transformer
 
 ---
 

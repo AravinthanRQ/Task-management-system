@@ -19,9 +19,9 @@ const roleIdentifier = async (
         throw new HttpError("User not found", HttpStatusCode.BAD_REQUEST);
     }
     if (user?.role === userRole.ADMIN) {
-        req.role = userRole.ADMIN;
+        req.JWTrole = userRole.ADMIN;
     } else {
-        req.role = userRole.USER;
+        req.JWTrole = userRole.USER;
     }
     next();
 };

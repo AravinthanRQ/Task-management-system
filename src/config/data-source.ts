@@ -19,7 +19,7 @@ export const AppDataSource = new DataSource({
     password: DB_PASSWORD,
     database: TEST_DB_NAME,
     synchronize: NODE_ENV ? true : false,
-    logging: true,
+    logging: false,
     entities: [User, Project, Task],
     subscribers: [],
     migrations: [],

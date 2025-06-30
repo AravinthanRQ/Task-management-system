@@ -1,4 +1,4 @@
-import {  Queue } from "bullmq";
+import { Queue } from "bullmq";
 import redisConnection from "../config/redisConnection";
 import { QUEUE_NAME } from "../config/env";
 
@@ -6,15 +6,15 @@ import { QUEUE_NAME } from "../config/env";
 const reminderQueue = new Queue(QUEUE_NAME, { connection: redisConnection });
 
 export const scheduleDailyReminders = async () => {
-  await reminderQueue.add(
-    "sendDailyReminders",
-    {},
-    {
-      repeat: {
-        pattern: "0 9 * * *", // 9 AM daily
-      },
-      removeOnComplete: true,
-      removeOnFail: false,
-    }
-  );
+    await reminderQueue.add(
+        "sendDailyReminders",
+        {},
+        {
+            repeat: {
+                pattern: "* * * * *",
+            },
+            removeOnComplete: true,
+            removeOnFail: false,
+        },
+    );
 };

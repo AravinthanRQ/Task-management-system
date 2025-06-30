@@ -4,6 +4,11 @@ import { HttpStatusCode } from "../common/httpStatus.enum";
 import { userRequest } from "../common/userRequest.interface";
 import { validateToken } from "../common/jwt";
 
+/**
+ * Authenticating middleware for JWT
+ * @params req - request handler of type userRequest that extends Request of Express to include role and id
+ * @params  next - next function of Express to jump to the next middleware
+ */
 const authenticate = (req: userRequest, res: Response, next: NextFunction) => {
     const bearerToken = req.headers.authorization;
     if (!bearerToken)

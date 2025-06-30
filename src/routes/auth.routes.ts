@@ -1,37 +1,31 @@
 import { Router } from "express";
-import { instanceToPlain, plainToInstance } from "class-transformer";
-import { validate } from "class-validator";
 import authenticate from "../middlewares/auth.middleware";
-import { HttpError, asyncHandler } from "../middlewares/error.middleware";
-import { HttpStatusCode } from "../common/httpStatus.enum";
 import { LoginUserDto } from "../dto/login-user.dto";
-import { userRequest } from "../common/userRequest.interface";
-import { authService } from "../services/auth.services";
+import { RegisterUserDto } from "../dto/register-user.dto";
+import roleIdentifier from "../middlewares/role.middleare";
+import validationMiddleware from "../middlewares/validate.middleware";
+import {
+    getProfileController,
+    loginUserController,
+    registerUserController,
+} from "../controller/auth.controller";
 
 const router = Router();
 
-router.post("/login", asyncHandler(async (req, res) => {
-    const dto = plainToInstance(LoginUserDto, req.body);
-    const errors = await validate(dto);
-    if (errors.length > 0) {
-        throw new HttpError("Missing required fields: email, password", HttpStatusCode.BAD_REQUEST);
-    }
+router.post(
+    "/register",
+    authenticate,
+    roleIdentifier,
+    validationMiddleware(RegisterUserDto, "body", false),
+    registerUserController,
+);
 
-    const { user, token } = await authService.login(dto);
+router.post(
+    "/login",
+    validationMiddleware(LoginUserDto, "body", false),
+    loginUserController,
+);
 
-    res.status(HttpStatusCode.OK).json({
-        message: "User logged in succesfully",
-        data: { user: instanceToPlain(user), token },
-    });
-}));
-
-router.get("/profile", authenticate, asyncHandler(async (req: userRequest, res) => {
-    const user = await authService.getProfile(req.id!);
-
-    res.status(HttpStatusCode.OK).json({
-        message: "User profile fetched succesfully",
-        data: { user: instanceToPlain(user) }
-    });
-}));
+router.get("/profile", authenticate, getProfileController);
 
 export default router;

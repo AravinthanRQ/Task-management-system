@@ -2,6 +2,7 @@ import { AppDataSource } from "../config/data-source";
 import { User } from "../entities/User";
 import { RegisterUserDto } from "../dto/register-user.dto";
 import { userRole } from "../common/userRole.enum";
+import { userCreds } from "../common/userCreds.interface";
 
 const ormRepository = AppDataSource.getRepository(User);
 
@@ -18,13 +19,14 @@ export const userRepository = {
         return ormRepository.find();
     },
 
-    async createAndSave(userData: Omit<RegisterUserDto, 'password'> & {password: string}): Promise<User> {
-        const newUser = ormRepository.create(userData);
+    createAndSave({ email, password, role }: userCreds): Promise<User> {
+        const newUser = ormRepository.create({ email, password, role });
         return ormRepository.save(newUser);
     },
-    
-    async updateUserRole(user: User, role: userRole): Promise<User> {
+
+    updateUserRole(user: User, role: userRole): Promise<User> {
         user.role = role;
         return ormRepository.save(user);
-    }
+    },
 };
+
